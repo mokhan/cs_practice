@@ -2,7 +2,8 @@
 {
     public class Greeting
     {
-      public string Hello(){
+      public string Hello()
+      {
         throw new System.NotImplementedException();
       }
     }

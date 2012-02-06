@@ -1,0 +1,13 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    albacore (0.2.7)
+      rubyzip (~> 0.9)
+    rubyzip (0.9.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  albacore
+  rubyzip
