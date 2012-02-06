@@ -4,7 +4,7 @@
     {
       public string Hello()
       {
-        throw new System.NotImplementedException();
+        return "hello";
       }
     }
 }
