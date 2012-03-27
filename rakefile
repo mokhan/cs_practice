@@ -7,10 +7,13 @@ msbuild :build do |msb|
   msb.solution = "studio.sln"
 end
 
-xbuild :xbuild do |xbuild|
-  xbuild.targets :Clean, :Build
-  #xbuild.targets "Release"
-  xbuild.solution = "studio.sln"
+#xbuild :xbuild do |xbuild|
+  #xbuild.targets :Clean, :Build
+  ##xbuild.targets "Release"
+  #xbuild.solution = "studio.sln"
+#end
+task :xbuild do 
+  sh "xbuild src/test/test.csproj"
 end
 
 desc 'mspec test runner'
