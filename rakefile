@@ -7,6 +7,12 @@ msbuild :build do |msb|
   msb.solution = "studio.sln"
 end
 
+xbuild :xbuild do |xbuild|
+  xbuild.targets :Clean, :Build
+  #xbuild.targets "Release"
+  xbuild.solution = "studio.sln"
+end
+
 desc 'mspec test runner'
 mspec :spec => :build do |mspec|
   mspec.command = 'packages/Machine.Specifications.0.5.3.0/tools/mspec-clr4.exe'
