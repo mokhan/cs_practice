@@ -6,5 +6,8 @@
       {
         return "hello";
       }
+      public string Goodbye(){
+        return "goodbye";
+      }
     }
 }
