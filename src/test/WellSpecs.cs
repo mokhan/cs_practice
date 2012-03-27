@@ -9,6 +9,9 @@ namespace test
     {
       sut = new Well();
     };
+    It should = () => {
+      true.ShouldBeTrue();
+    };
 
     static readonly Well sut;
   }
