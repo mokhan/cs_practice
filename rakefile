@@ -1,26 +1,17 @@
 require 'albacore'
 
-desc 'build'
-msbuild :build do |msb|
-  msb.properties :configuration => :Release
-  msb.targets :Clean, :Build
-  msb.solution = "studio.sln"
-end
-
-#xbuild :xbuild do |xbuild|
-  #xbuild.targets :Clean, :Build
-  ##xbuild.targets "Release"
-  #xbuild.solution = "studio.sln"
+#desc 'build'
+#msbuild :build do |msb|
+  #msb.properties :configuration => :Release
+  #msb.targets :Clean, :Build
+  #msb.solution = "studio.sln"
 #end
+
 task :xbuild do 
-  sh "xbuild src/test/test.csproj"
+  sh "xbuild src/test/test.csproj '/target:Clean;Rebuild' /verbosity:quiet /tv:4.0 /nologo"
 end
 
 desc 'mspec test runner'
-#mspec :spec => :build do |mspec|
-  #mspec.command = 'packages/Machine.Specifications.0.5.3.0/tools/mspec-clr4.exe'
-  #mspec.assemblies "src/test/bin/debug/test.dll"
-#end
 task :spec => :xbuild do
-  sh "mono --debug packages/Machine.Specifications.0.5.3.0/tools/mspec-x86-clr4.exe src/test/bin/Debug/test.dll"
+  sh "mono --debug packages/Machine.Specifications.0.5.3.0/tools/mspec-clr4.exe src/test/bin/Debug/test.dll"
 end
