@@ -1,12 +1,5 @@
 require 'albacore'
 
-#desc 'build'
-#msbuild :build do |msb|
-  #msb.properties :configuration => :Release
-  #msb.targets :Clean, :Build
-  #msb.solution = "studio.sln"
-#end
-
 task :xbuild do 
   sh "xbuild src/test/test.csproj '/target:Clean;Rebuild' /verbosity:quiet /tv:4.0 /nologo"
 end
