@@ -41,6 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Greeting.cs" />
+    <Compile Include="Commodity.cs" />
+    <Compile Include="CommoditySplits.cs" />
+    <Compile Include="DeclineCurve.cs" />
+    <Compile Include="DrillSchedule.cs" />
+    <Compile Include="Oppurtunity.cs" />
+    <Compile Include="Production.cs" />
+    <Compile Include="Quantity.cs" />
+    <Compile Include="TypeCurve.cs" />
     <Compile Include="Well.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
