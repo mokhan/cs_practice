@@ -3,43 +3,43 @@
   using Machine.Specifications;
   using domain;
 
-    public class GreetingSpecs
+  public class GreetingSpecs
+  {
+    Establish context = () =>
     {
-        Establish context = () =>
-        {
-          sut  = new Greeting();
-        };
+      sut  = new Greeting();
+    };
 
-        public class when_greeting_someone
-        {
-          Because of = () =>
-          {
-            result = sut.Hello();
-          };
+    public class when_greeting_someone
+    {
+      Because of = () =>
+      {
+        result = sut.Hello();
+      };
 
-          It should_say_hello = () =>
-          {
-            result.ShouldEqual("hello");
-          };
+      It should_say_hello = () =>
+      {
+        result.ShouldEqual("hello");
+      };
 
-          static string result;
-        }
-
-        public class when_saying_goodbye
-        {
-          Because of = () =>
-          {
-            result = sut.Goodbye();
-          };
-
-          It should_say_goodbye = () =>
-          {
-            result.ShouldEqual("goodbye");
-          };
-
-          static string result;
-        }
-
-        static Greeting sut;
+      static string result;
     }
+
+    public class when_saying_goodbye
+    {
+      Because of = () =>
+      {
+        result = sut.Goodbye();
+      };
+
+      It should_say_goodbye = () =>
+      {
+        result.ShouldEqual("goodbye");
+      };
+
+      static string result;
+    }
+
+    static Greeting sut;
+  }
 }
