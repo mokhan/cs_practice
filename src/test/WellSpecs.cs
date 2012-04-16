@@ -67,23 +67,50 @@
 
       public class when_reduced_working_interest
       {
-        It should_be_able_to_tell_the_estimated_net_total_production_for_any_month = () =>
+        Establish context = ()=> 
         {
-          var parkland75Percent = new Oppurtunity();
+          parkland75Percent = new Oppurtunity();
           parkland75Percent.WorkingInterest(75m.Percent());
           var declineCurve = new DeclineCurve();
           declineCurve.Composition<Gas>(50m.Percent());
           declineCurve.Composition<Oil>(50m.Percent());
           declineCurve.Add(0, 100.BOED());
           parkland75Percent.DeclinesUsing(declineCurve);
-
-          var schedule = new DrillSchedule();
-          var jan2013 = new Month(2013, 01);
-          schedule.Include(parkland75Percent.BringOnlineOn(jan2013));
-          schedule.EstimatedNetProductionFor<All>(jan2013).ShouldEqual(75.BOED());
-          schedule.EstimatedNetProductionFor<Gas>(jan2013).ShouldEqual(37.5m.BOED());
-          schedule.EstimatedNetProductionFor<Oil>(jan2013).ShouldEqual(37.5m.BOED());
+          jan2013 = new Month(2013, 01);
         };
+
+        Because of = ()=>
+        {
+          sut.Include(parkland75Percent.BringOnlineOn(jan2013));
+        };
+
+        It should_be_able_to_tell_the_estimated_net_total_production_for_any_month = () =>
+        {
+          sut.EstimatedNetProductionFor<All>(jan2013).ShouldEqual(75.BOED());
+        };
+
+        It should_be_able_to_tell_the_estimated_net_production_for_oil = ()=>
+        {
+          sut.EstimatedNetProductionFor<Oil>(jan2013).ShouldEqual(37.5m.BOED());
+        };
+
+        It should_be_able_to_tell_the_estimated_net_production_for_gas = ()=>
+        {
+          sut.EstimatedNetProductionFor<Gas>(jan2013).ShouldEqual(37.5m.BOED());
+        };
+
+        It should_be_able_to_tell_the_estimated_net_production_for_ngl = ()=>
+        {
+          sut.EstimatedNetProductionFor<NGL>(jan2013).ShouldEqual(0m.BOED());
+        };
+
+        It should_be_able_to_tell_the_estimated_net_production_for_condensate = ()=>
+        {
+          sut.EstimatedNetProductionFor<Condensate>(jan2013).ShouldEqual(0m.BOED());
+        };
+
+        static Month jan2013;
+        static Oppurtunity parkland75Percent;
       }
     }
   }
