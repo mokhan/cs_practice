@@ -7,16 +7,16 @@
   using domain;
   using utility;
 
-  public class WellSpecs
+  public class ProductionScheduleSpecs
   {
     public class when_estimating_production
     {
       Establish context = () =>
       {
-          sut = new DrillSchedule();
+          sut = new ProductionSchedule();
       };
 
-      static DrillSchedule sut;
+      static ProductionSchedule sut;
 
       public class when_100_percent_working_interest
       {

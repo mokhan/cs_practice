@@ -46,6 +46,7 @@
     <Compile Include="CommoditySplits.cs" />
     <Compile Include="DeclineCurve.cs" />
     <Compile Include="DrillSchedule.cs" />
+    <Compile Include="EstimatedNetProductionFor.cs" />
     <Compile Include="Month.cs" />
     <Compile Include="Oppurtunity.cs" />
     <Compile Include="Percent.cs" />
