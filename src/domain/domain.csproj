@@ -55,6 +55,7 @@
     <Compile Include="Units.cs" />
     <Compile Include="Well.cs" />
     <Compile Include="IUnitOfMeasure.cs" />
+    <Compile Include="utility\IVisitor.cs" />
     <Compile Include="utility\iterating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

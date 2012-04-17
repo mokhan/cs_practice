@@ -5,6 +5,7 @@
   using System.Linq;
   using Machine.Specifications;
   using domain;
+  using utility;
 
   public class WellSpecs
   {
@@ -86,7 +87,7 @@
 
         It should_be_able_to_tell_the_estimated_net_total_production_for_any_month = () =>
         {
-          sut.EstimatedNetProductionFor<All>(jan2013).ShouldEqual(75.BOED());
+          sut.AcceptAndReturnResultFrom(new EstimatedNetProductionFor<All>(jan2013)).ShouldEqual(75.BOED());
         };
 
         It should_be_able_to_tell_the_estimated_net_production_for_oil = ()=>

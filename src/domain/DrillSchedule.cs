@@ -5,7 +5,7 @@ namespace domain
   using System.Linq;
   using utility;
 
-  public class DrillSchedule
+  public class DrillSchedule : IVisitable<IWell>
   {
     ICollection<IWell> wells = new List<IWell>();
 
@@ -34,12 +34,38 @@ namespace domain
       return result;
     }
 
+    public void Accept(IVisitor<IWell> visitor )
+    {
+      Accept(visitor.Visit);
+    }
+
     void Accept(Action<IWell> visitor )
     {
       wells.Each(well =>
       {
         visitor(well);
       });
+    }
+  }
+  public class EstimatedNetProductionFor<T> : IValueReturningVisitor<IWell, IQuantity> where T : ICommodity, new()
+  {
+    Month month;
+    IQuantity result;
+
+    public EstimatedNetProductionFor(Month month)
+    {
+      this.month = month;
+      result = new Quantity(0, new BOED());
+    }
+
+    public void Visit(IWell well)
+    {
+      result = result.Plus(well.NetProductionFor<T>(month));
+    }
+
+    public IQuantity Result()
+    {
+      return this.result;
     }
   }
 }
