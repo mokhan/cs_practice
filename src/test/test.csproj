@@ -47,6 +47,7 @@
     <Compile Include="GreetingSpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
     <Compile Include="ProductionScheduleSpecs.cs" />
+    <Compile Include="Mock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
