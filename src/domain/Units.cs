@@ -16,7 +16,17 @@ namespace domain
 
     public static IQuantity BOED(this decimal quantity)
     {
-      return new Quantity(quantity, new BOED());
+      return quantity.ToQuantity<BOED>();
+    }
+
+    static public IQuantity MCF(this decimal quantity)
+    {
+      return quantity.ToQuantity<MCF>();
+    }
+
+    static public IQuantity ToQuantity<T>(this decimal quantity) where T: IUnitOfMeasure,new()
+    {
+      return new Quantity(quantity, new T());
     }
   }
 }

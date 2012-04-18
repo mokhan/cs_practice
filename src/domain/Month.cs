@@ -2,7 +2,7 @@ namespace domain
 {
   using System;
 
-  public class Month
+  public class Month : IComparable<Month>
   {
     int year;
     int month;
@@ -11,6 +11,23 @@ namespace domain
     {
       this.year = year;
       this.month = month;
+    }
+
+    public Month Plus(int months)
+    {
+      var newMonth = new DateTime(year, month, 01).AddMonths(months);
+      return new Month(newMonth.Year, newMonth.Month);
+    }
+
+    static public Month Now()
+    {
+      var now = Clock.Now();
+      return new Month(now.Year, now.Month);
+    }
+
+    public int CompareTo(Month other)
+    {
+      return new DateTime(year, month, 01).CompareTo(new DateTime(other.year, other.month, 01));
     }
 
     public bool Equals(Month other)
@@ -36,15 +53,16 @@ namespace domain
       }
     }
 
-    public Month Plus(int months)
-    {
-      var newMonth = new DateTime(year, month, 01).AddMonths(months);
-      return new Month(newMonth.Year, newMonth.Month);
-    }
-
     public override string ToString()
     {
       return string.Format("{0} {1}", year, month);
+    }
+  }
+  public static class Months
+  {
+    public static Month January(this int year)
+    {
+      return new Month(year,01);
     }
   }
 }

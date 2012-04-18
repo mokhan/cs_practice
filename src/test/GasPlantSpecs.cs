@@ -2,7 +2,10 @@ namespace test
 {
   using System.Linq;
   using System.Collections.Generic;
+  using Machine.Specifications;
   using Rhino.Mocks;
+  using domain;
+  using utility;
 
   public class GasPlantSpecs
   {
@@ -37,7 +40,9 @@ namespace test
         results = sut.MonthsOverAvailableCapacity().ToList();
       };
 
-      IEnumerable<Month> results;
+      static IEnumerable<Month> results;
+      static IWell firstWell;
+      static IWell secondWell;
     }
   }
 }

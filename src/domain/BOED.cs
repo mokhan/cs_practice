@@ -35,4 +35,13 @@ namespace domain
 
     readonly string name = "BOED";
   }
+
+  public class MCF : IUnitOfMeasure
+  {
+    public decimal Convert(decimal amount, IUnitOfMeasure units)
+    {
+      // need to do actual conversion here;
+      return amount;
+    }
+  }
 }
