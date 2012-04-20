@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GreetingSpecs.cs" />
+    <Compile Include="BOEDSpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
     <Compile Include="GasPlantSpecs.cs" />
     <Compile Include="Mock.cs" />

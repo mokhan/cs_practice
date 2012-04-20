@@ -81,6 +81,7 @@ namespace domain
 
     public IQuantity For(Month month)
     {
+      //return this.increases.Single(x => x.IsFor(month)).;
       return null;
     }
 
@@ -93,6 +94,11 @@ namespace domain
       {
         this.quantity = quantity;
         this.month = month;
+      }
+
+      public bool IsFor(Month other)
+      {
+        return month.Equals(other);
       }
     }
   }

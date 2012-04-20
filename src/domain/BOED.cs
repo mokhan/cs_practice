@@ -4,8 +4,7 @@ namespace domain
   {
     public decimal Convert(decimal amount, IUnitOfMeasure units)
     {
-      // need to do actual conversion here;
-      return amount;
+      return ( units is MCF ) ? amount * 6: amount;
     }
 
     public bool Equals(BOED other)
