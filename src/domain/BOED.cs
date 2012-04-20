@@ -39,7 +39,7 @@ namespace domain
   {
     public decimal Convert(decimal amount, IUnitOfMeasure units)
     {
-      // need to do actual conversion here;
+      if(units is BOED) return amount/6;
       return amount;
     }
   }
