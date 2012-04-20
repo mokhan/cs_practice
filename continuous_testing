@@ -83,12 +83,15 @@ def notify(build_message)
   #args.each {|key,value| command_line += " /#{key}:\"#{value}\""}
   #`#{command_line} "#{build_message.message}"`
 
+  begin
   GNTP.notify({
     :app_name => 'c# practice',
     :title => build_message.successful ? 'PASS' : 'FAIL',
     :text => build_message.message,
     :icon => build_message.successful ? 'green.jpg' : 'red.jpg'
   })
+  rescue StandardError
+  end
 end
 
 def monitor

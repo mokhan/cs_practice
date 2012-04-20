@@ -3,6 +3,7 @@ namespace domain
   using System;
   using System.Linq;
   using System.Collections.Generic;
+  using utility;
 
   public class GasPlant
   {
@@ -37,7 +38,25 @@ namespace domain
 
     public IEnumerable<Month> MonthsOverAvailableCapacity(IRange<Month> months)
     {
-      return Enumerable.Empty<Month>();
+      var results = new List<Month>();
+      months.Accept(month =>
+      {
+        var production = TotalProductionFor(month);
+        Console.Out.WriteLine(production);
+        if( capacity.For(month).IsGreaterThan(production) ){
+          results.Add(month);
+        }
+      });
+      return results;
+    }
+    IQuantity TotalProductionFor(Month month)
+    {
+      IQuantity result = new Quantity(0, new BOED());
+      wells.Each(x =>
+      {
+        result = result.Plus( x.GrossProductionFor<Gas>(month));
+      });
+      return result;
     }
   }
 
@@ -60,15 +79,21 @@ namespace domain
       this.increases.Add(new Increase(quantity, month));
     }
 
+    public IQuantity For(Month month)
+    {
+      return null;
+    }
+
     class Increase
     {
+      IQuantity quantity;
+      Month month;
+
       public Increase(IQuantity quantity, Month month)
       {
+        this.quantity = quantity;
+        this.month = month;
       }
     }
-  }
-
-  public interface IRange<T> where T : IComparable<T>
-  {
   }
 }

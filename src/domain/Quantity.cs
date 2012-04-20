@@ -4,6 +4,7 @@ namespace domain
   {
     IQuantity Plus(IQuantity other);
     IQuantity ConvertTo(IUnitOfMeasure units);
+    bool IsGreaterThan(IQuantity other);
     decimal Amount { get; }
     IUnitOfMeasure Units { get; }
   }
@@ -28,6 +29,11 @@ namespace domain
     public IQuantity ConvertTo(IUnitOfMeasure unitOfMeasure)
     {
       return new Quantity(unitOfMeasure.Convert(Amount, this.Units), unitOfMeasure);
+    }
+
+    public bool IsGreaterThan(IQuantity other)
+    {
+      return true;
     }
 
     public override string ToString()
