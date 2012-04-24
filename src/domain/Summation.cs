@@ -4,9 +4,9 @@ namespace domain
 
   public static class Summation
   {
-    static public IQuantity Sum(this IEnumerable<IQuantity> items)
+    static public IQuantity Sum<T>(this IEnumerable<IQuantity> items) where T: IUnitOfMeasure,new()
     {
-      var result = 0m.BOED();
+      var result = 0m.ToQuantity<T>();
       foreach (var item in items) {
         result = result.Plus(item);
       }

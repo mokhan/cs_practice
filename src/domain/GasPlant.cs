@@ -49,7 +49,7 @@ namespace domain
 
     IQuantity TotalProductionFor(Month month)
     {
-      return wells.Select(well => well.GrossProductionFor<Gas>(month)).Sum();
+      return wells.Select(well => well.GrossProductionFor<Gas>(month)).Sum<BOED>();
     }
   }
 }
