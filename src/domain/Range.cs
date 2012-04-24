@@ -13,6 +13,7 @@ namespace domain
   public interface IRange<T> where T : IComparable<T>
   {
     void Accept(Action<T> action);
+    bool Contains(T item);
   }
 
   public class Range<T> : IRange<T> where T : IComparable<T>, IIncrementable<T>
@@ -35,6 +36,11 @@ namespace domain
         visitor(next);
         next = next.Next();
       }
+    }
+
+    public bool Contains(T item)
+    {
+      return start.CompareTo(item) <= 0 && end.CompareTo(item) > 0;
     }
   }
 

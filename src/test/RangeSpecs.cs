@@ -23,12 +23,40 @@ namespace test
       Because of = () =>
       {
         sut.Accept(x =>
-        {
-          results.Add(x);
-        });
+            {
+            results.Add(x);
+            });
       };
 
       static IList<Month> results = new List<Month>();
+    }
+    public class when_a_range_contains_an_item
+    {
+      It should_return_true=()=>
+      {
+        result.ShouldBeTrue();
+      };
+
+      Because of = ()=>
+      {
+        result = sut.Contains(new Month(2012, 02));
+      };
+
+      static bool result;
+    }
+    public class when_an_item_is_before_the_range{
+      It should_return_false=()=>
+      {
+        var result = sut.Contains(new Month(2011, 12));
+        result.ShouldBeFalse();
+      };
+    }
+    public class when_an_item_is_after_the_range{
+      It should_return_false=()=>
+      {
+        var result = sut.Contains(new Month(2012, 04));
+        result.ShouldBeFalse();
+      };
     }
   }
 }

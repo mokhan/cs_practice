@@ -8,6 +8,7 @@ namespace domain
   public interface IFacility 
   {
     void AcceptFlowFrom(IWell well);
+    IQuantity AvailableCapacityFor(Month month);
   }
 
   public class GasPlant : IFacility
@@ -34,6 +35,10 @@ namespace domain
     public IEnumerable<Month> MonthsOverAvailableCapacity()
     {
       return MonthsOverAvailableCapacity(Month.Now().UpTo(new Month(2099, 12)));
+    }
+
+    public virtual IQuantity AvailableCapacityFor(Month month){
+      throw new System.NotImplementedException();
     }
 
     public IEnumerable<Month> MonthsOverAvailableCapacity(IRange<Month> months)

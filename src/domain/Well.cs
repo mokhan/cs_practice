@@ -32,8 +32,22 @@ namespace domain
     public void FlowInto(IFacility facility)
     {
       ensure_that_this_well_is_not_already_flowing_into_a_plant();
-      this.facility = facility;
+      ensure_that_this_well_does_not_overflow_the_plant(facility);
       facility.AcceptFlowFrom(this);
+      this.facility = facility;
+    }
+
+    void ensure_that_this_well_does_not_overflow_the_plant(IFacility facility)
+    {
+      var period = initialProductionMonth.UpTo(new Month(2099, 12));
+      this.curve.Accept( production =>
+      {
+        if( production.OccursDuring(period)){
+          if(production.IsGreaterThanAvailableAt(facility)){
+            throw new Exception();
+          }
+        }
+      });
     }
 
     void ensure_that_this_well_is_not_already_flowing_into_a_plant()

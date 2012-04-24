@@ -1,5 +1,6 @@
 namespace domain
 {
+  using System;
   using System.Linq;
   using System.Collections.Generic;
 
@@ -17,6 +18,10 @@ namespace domain
     public IQuantity ProductionFor<Commodity>(Month month) where Commodity : ICommodity, new()
     {
       return production.Single(x => x.IsFor(month)).ProductionOf<Commodity>();
+    }
+
+    public virtual void Accept(Action<Production> visitor)
+    {
     }
   }
 }

@@ -18,6 +18,16 @@ namespace domain
       return month.Equals(otherMonth);
     }
 
+    public virtual bool OccursDuring(IRange<Month> period)
+    {
+      return period.Contains(this.month);
+    }
+
+    public virtual bool IsGreaterThanAvailableAt(IFacility facility)
+    {
+      return facility.AvailableCapacityFor(this.month).IsGreaterThan(produced);
+    }
+
     public IQuantity ProductionOf<T>() where T : ICommodity, new()
     {
       return split.PercentageOf<T>(produced);
