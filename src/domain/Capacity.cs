@@ -26,15 +26,7 @@ namespace domain
 
     public IQuantity AvailableFor(Month month)
     {
-      IQuantity result = new Quantity(0, new MCF());
-      this
-        .increases
-        .Where(x => x.IsBeforeOrOn(month))
-        .Each(x =>
-        {
-          result = result.Plus(x.IncreasedCapacity());
-        });
-      return result;
+      return this.increases.Where(x => x.IsBeforeOrOn(month)).Select(x => x.IncreasedCapacity()).Sum<MCF>();
     }
 
     class Increase
