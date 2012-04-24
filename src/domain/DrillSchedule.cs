@@ -16,22 +16,12 @@ namespace domain
 
     public IQuantity EstimatedGrossProductionFor<Commodity>(Month month) where Commodity : ICommodity, new()
     {
-      IQuantity result = new Quantity(0, new BOED());
-      Accept(well =>
-      {
-        result = result.Plus(well.GrossProductionFor<Commodity>(month));
-      });
-      return result;
+      return wells.Select(well => well.GrossProductionFor<Commodity>(month)).Sum();
     }
 
     public IQuantity EstimatedNetProductionFor<Commodity>(Month month) where Commodity : ICommodity, new()
     {
-      IQuantity result = new Quantity(0, new BOED());
-      Accept(well =>
-      {
-        result = result.Plus(well.NetProductionFor<Commodity>(month));
-      });
-      return result;
+      return wells.Select(well => well.NetProductionFor<Commodity>(month)).Sum();
     }
 
     public void Accept(IVisitor<IWell> visitor )

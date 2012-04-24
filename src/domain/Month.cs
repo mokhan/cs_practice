@@ -70,12 +70,4 @@ namespace domain
       return string.Format("{0} {1}", date.Year, date.Month);
     }
   }
-
-  public static class Months
-  {
-    public static Month January(this int year)
-    {
-      return new Month(year,01);
-    }
-  }
 }

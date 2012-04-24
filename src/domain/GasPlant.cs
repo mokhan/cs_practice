@@ -36,92 +36,20 @@ namespace domain
       var results = new List<Month>();
       months.Accept(month =>
       {
-        if(IsOverCapacity(month)){
+        if(IsOverCapacity(month))
           results.Add(month);
-        }
       });
       return results;
     }
 
     bool IsOverCapacity(Month month)
     {
-        var production = TotalProductionFor(month);
-        if( capacity.AvailableFor(month).IsGreaterThan(production) ){
-          return true;
-        }
-        return false;
+      return capacity.AvailableFor(month).IsGreaterThan(TotalProductionFor(month));
     }
+
     IQuantity TotalProductionFor(Month month)
     {
-      IQuantity result = new Quantity(0, new BOED());
-      wells.Each(x =>
-      {
-        result = result.Plus( x.GrossProductionFor<Gas>(month));
-      });
-      return result;
-    }
-  }
-
-  public class Capacity
-  {
-    IList<Increase> increases;
-
-    public Capacity(IQuantity initialCapacity):this(initialCapacity, Month.Now())
-    {
-    }
-
-    public Capacity(IQuantity initialCapacity, Month month)
-    {
-      this.increases = new List<Increase>();
-      this.IncreaseCapacity(initialCapacity, month);
-    }
-
-    public void IncreaseCapacity(IQuantity quantity, Month month)
-    {
-      this.increases.Add(new Increase(quantity, month));
-    }
-
-    public IQuantity AvailableFor(Month month)
-    {
-      return new Quantity(0, new BOED());
-      //return this
-        //.increases
-        //.Where(x => x.IsBeforeOrOn(month))
-        //.Sum(x => x.IncreasedCapacity());
-      return null;
-    }
-
-    class Increase
-    {
-      IQuantity quantity;
-      Month month;
-
-      public Increase(IQuantity quantity, Month month)
-      {
-        this.quantity = quantity;
-        this.month = month;
-      }
-
-      public bool IsBeforeOrOn(Month other)
-      {
-        return month.IsBefore(other) || month.Equals(other);
-      }
-
-      public IQuantity IncreasedCapacity()
-      {
-        return this.quantity;
-      }
-    }
-  }
-  public static class Summation
-  {
-    static public IQuantity Sum(this IEnumerable<IQuantity> items)
-    {
-      var result = 0m.BOED();
-      foreach (var item in items) {
-        result = result.Plus(item);
-      }
-      return result;
+      return wells.Select(well => well.GrossProductionFor<Gas>(month)).Sum();
     }
   }
 }
