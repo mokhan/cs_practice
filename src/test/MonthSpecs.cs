@@ -20,5 +20,20 @@ namespace test
         new Month(2012, 04).CompareTo(new Month(2012, 04)).ShouldEqual(0);
       };
     }
+    public class when_checking_if_a_month_is_before_another
+    {
+      It should_return_true_when_it_is =()=>
+      {
+        new Month(2012, 02).IsBefore(new Month(2012, 03)).ShouldBeTrue();
+      };
+      It should_return_false_when_it_is_not=()=>
+      {
+        new Month(2012, 03).IsBefore(new Month(2012, 02)).ShouldBeFalse();
+      };
+      It should_return_false_when_it_is_the_same_month=()=>
+      {
+        new Month(2012, 02).IsBefore(new Month(2012, 02)).ShouldBeFalse();
+      };
+    }
   }
 }

@@ -28,12 +28,7 @@ namespace domain
 
     public IEnumerable<Month> MonthsOverAvailableCapacity()
     {
-      return MonthsOverAvailableCapacity(Month.Now());
-    }
-
-    public IEnumerable<Month> MonthsOverAvailableCapacity(Month month)
-    {
-      return MonthsOverAvailableCapacity(Month.Now().UpTo(month));
+      return MonthsOverAvailableCapacity(Month.Now().UpTo(new Month(2099, 12)));
     }
 
     public IEnumerable<Month> MonthsOverAvailableCapacity(IRange<Month> months)
@@ -41,13 +36,20 @@ namespace domain
       var results = new List<Month>();
       months.Accept(month =>
       {
-        var production = TotalProductionFor(month);
-        Console.Out.WriteLine(production);
-        if( capacity.For(month).IsGreaterThan(production) ){
+        if(IsOverCapacity(month)){
           results.Add(month);
         }
       });
       return results;
+    }
+
+    bool IsOverCapacity(Month month)
+    {
+        var production = TotalProductionFor(month);
+        if( capacity.AvailableFor(month).IsGreaterThan(production) ){
+          return true;
+        }
+        return false;
     }
     IQuantity TotalProductionFor(Month month)
     {
@@ -79,9 +81,13 @@ namespace domain
       this.increases.Add(new Increase(quantity, month));
     }
 
-    public IQuantity For(Month month)
+    public IQuantity AvailableFor(Month month)
     {
-      //return this.increases.Single(x => x.IsFor(month)).;
+      return new Quantity(0, new BOED());
+      //return this
+        //.increases
+        //.Where(x => x.IsBeforeOrOn(month))
+        //.Sum(x => x.IncreasedCapacity());
       return null;
     }
 
@@ -96,10 +102,26 @@ namespace domain
         this.month = month;
       }
 
-      public bool IsFor(Month other)
+      public bool IsBeforeOrOn(Month other)
       {
-        return month.Equals(other);
+        return month.IsBefore(other) || month.Equals(other);
       }
+
+      public IQuantity IncreasedCapacity()
+      {
+        return this.quantity;
+      }
+    }
+  }
+  public static class Summation
+  {
+    static public IQuantity Sum(this IEnumerable<IQuantity> items)
+    {
+      var result = 0m.BOED();
+      foreach (var item in items) {
+        result = result.Plus(item);
+      }
+      return result;
     }
   }
 }

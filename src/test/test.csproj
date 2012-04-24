@@ -50,12 +50,12 @@
     <Compile Include="GreetingSpecs.cs" />
     <Compile Include="BOEDSpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
-    <Compile Include="GasPlantSpecs.cs" />
     <Compile Include="MCFSpecs.cs" />
     <Compile Include="Mock.cs" />
     <Compile Include="MonthSpecs.cs" />
     <Compile Include="ProductionScheduleSpecs.cs" />
     <Compile Include="RangeSpecs.cs" />
+    <Compile Include="GasPlantSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

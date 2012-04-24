@@ -23,6 +23,7 @@ namespace domain
 
     public IQuantity Plus(IQuantity other)
     {
+      if(null == other) return this;
       return new Quantity(Amount + other.ConvertTo(Units).Amount, Units);
     }
 

@@ -7,7 +7,9 @@ namespace test
     {
       sut = new MCF();
     };
+
     static MCF sut;
+
     public class when_converting_6_mcf_to_boed
     {
       It should_return_one_boed=()=>

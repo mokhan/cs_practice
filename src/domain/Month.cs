@@ -4,25 +4,23 @@ namespace domain
 
   public class Month : IComparable<Month>, IIncrementable<Month>
   {
-    int year;
-    int month;
+    DateTime date;
 
     public Month(int year, int month)
     {
-      this.year = year;
-      this.month = month;
+      date = new DateTime(year, month, 01);
     }
 
     public Month Plus(int months)
     {
-      var newMonth = ToDateTime().AddMonths(months);
-      return ToMonth(newMonth);
+      return ToMonth(date.AddMonths(months));
     }
 
-    DateTime ToDateTime()
+    public bool IsBefore(Month other)
     {
-      return new DateTime(year, month, 01);
+      return this.CompareTo(other) < 0;
     }
+
     Month ToMonth(DateTime date)
     {
       return new Month(date.Year, date.Month);
@@ -36,7 +34,7 @@ namespace domain
 
     public int CompareTo(Month other)
     {
-      return new DateTime(year, month, 01).CompareTo(new DateTime(other.year, other.month, 01));
+      return this.date.CompareTo(other.date);
     }
 
     public Month Next()
@@ -48,7 +46,7 @@ namespace domain
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return other.year == year && other.month == month;
+      return other.date == date;
     }
 
     public override bool Equals(object obj)
@@ -63,13 +61,13 @@ namespace domain
     {
       unchecked
       {
-        return (year*397) ^ month;
+        return (date.Year*397) ^ date.Month;
       }
     }
 
     public override string ToString()
     {
-      return string.Format("{0} {1}", year, month);
+      return string.Format("{0} {1}", date.Year, date.Month);
     }
   }
 
