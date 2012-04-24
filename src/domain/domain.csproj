@@ -47,7 +47,6 @@
     <Compile Include="Commodity.cs" />
     <Compile Include="CommoditySplits.cs" />
     <Compile Include="DeclineCurve.cs" />
-    <Compile Include="DrillSchedule.cs" />
     <Compile Include="EstimatedNetProductionFor.cs" />
     <Compile Include="GasPlant.cs" />
     <Compile Include="MCF.cs" />
@@ -56,6 +55,7 @@
     <Compile Include="Oppurtunity.cs" />
     <Compile Include="Percent.cs" />
     <Compile Include="Production.cs" />
+    <Compile Include="ProductionSchedule.cs" />
     <Compile Include="Quantity.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="Summation.cs" />
