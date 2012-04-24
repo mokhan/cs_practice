@@ -31,7 +31,7 @@ namespace domain
 
   public interface IWell
   {
-    IQuantity GrossProductionFor<T>(Month month) where T : ICommodity, new();
-    IQuantity NetProductionFor<T>(Month month) where T : ICommodity, new();
+    IQuantity GrossProductionFor<Commodity>(Month month) where Commodity : ICommodity, new();
+    IQuantity NetProductionFor<Commodity>(Month month) where Commodity : ICommodity, new();
   }
 }

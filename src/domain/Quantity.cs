@@ -34,7 +34,7 @@ namespace domain
 
     public bool IsGreaterThan(IQuantity other)
     {
-      return true;
+      return this.Amount > other.ConvertTo(this.Units).Amount;
     }
 
     public override string ToString()

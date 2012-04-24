@@ -50,6 +50,7 @@
     <Compile Include="DrillSchedule.cs" />
     <Compile Include="EstimatedNetProductionFor.cs" />
     <Compile Include="GasPlant.cs" />
+    <Compile Include="MCF.cs" />
     <Compile Include="Month.cs" />
     <Compile Include="Months.cs" />
     <Compile Include="Oppurtunity.cs" />

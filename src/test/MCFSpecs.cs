@@ -2,7 +2,9 @@ namespace test
 {
   using Machine.Specifications;
   using domain;
-  public class MCFSpecs{
+
+  public class MCFSpecs
+  {
     Establish context = ()=>
     {
       sut = new MCF();
@@ -10,16 +12,16 @@ namespace test
 
     static MCF sut;
 
-    public class when_converting_6_mcf_to_boed
+    public class when_converting_1_BOED_to_MCF
     {
-      It should_return_one_boed=()=>
+      It should_return_6_BOED=()=>
       {
-        result.ShouldEqual(1m);
+        result.ShouldEqual(6m);
       };
 
       Because of = ()=>
       {
-        result = sut.Convert(6m, new BOED());
+        result = sut.Convert(1m, new BOED());
       };
 
       static decimal result;

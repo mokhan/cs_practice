@@ -4,7 +4,7 @@ namespace domain
   {
     public decimal Convert(decimal amount, IUnitOfMeasure units)
     {
-      return ( units is MCF ) ? amount * 6: amount;
+      return ( units is MCF ) ? amount / 6: amount;
     }
 
     public bool Equals(BOED other)
@@ -33,14 +33,5 @@ namespace domain
     }
 
     readonly string name = "BOED";
-  }
-
-  public class MCF : IUnitOfMeasure
-  {
-    public decimal Convert(decimal amount, IUnitOfMeasure units)
-    {
-      if(units is BOED) return amount/6;
-      return amount;
-    }
   }
 }

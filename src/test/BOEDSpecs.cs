@@ -12,16 +12,16 @@ namespace test
 
     static IUnitOfMeasure sut;
 
-    public class when_converting_one_BOE_to_MCF
+    public class when_converting_6_MCF_to_BOE
     {
-      It should_return_6_MCF=()=>
+      It should_return_1_BOE=()=>
       {
-        result.ShouldEqual(6m);
+        result.ShouldEqual(1m);
       };
 
       Because of = ()=>
       {
-        result = sut.Convert(1, new MCF());
+        result = sut.Convert(6, new MCF());
       };
 
       static decimal result;
