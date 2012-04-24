@@ -9,4 +9,11 @@ namespace test
       return MockRepository.GenerateMock<T>();
     }
   }
+  public static class Assertsions
+  {
+    public static void received<T>(this T mock,System.Action<T> action)
+    {
+      mock.AssertWasCalled(action);
+    }
+  }
 }

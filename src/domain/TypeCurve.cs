@@ -7,6 +7,8 @@ namespace domain
   {
     IEnumerable<Production> production;
 
+    protected TypeCurve() { }
+
     public TypeCurve(IEnumerable<Production> production)
     {
       this.production = production.ToList();

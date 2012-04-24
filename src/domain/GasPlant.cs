@@ -5,7 +5,12 @@ namespace domain
   using System.Collections.Generic;
   using utility;
 
-  public class GasPlant
+  public interface IFacility 
+  {
+    void AcceptFlowFrom(IWell well);
+  }
+
+  public class GasPlant : IFacility
   {
     IList<IWell> wells;
     Capacity capacity;
