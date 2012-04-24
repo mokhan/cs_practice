@@ -46,7 +46,7 @@ namespace domain
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return other.Amount == Amount && Equals(other.Units, Units);
+      return other.Amount == Amount && Equals(other.Units.GetType(), Units.GetType());
     }
 
     public override bool Equals(object obj)

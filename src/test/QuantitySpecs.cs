@@ -44,5 +44,12 @@ namespace test
         };
       }
     }
+    public class when_two_quantities_are_equal
+    {
+      It should_return_true=()=>
+      {
+        new Quantity(120, new MCF()).ShouldEqual(new Quantity(120, new MCF()));
+      };
+    }
   }
 }

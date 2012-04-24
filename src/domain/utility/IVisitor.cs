@@ -13,7 +13,8 @@ namespace utility
   {
     TResult Result();
   }
-  public static class Visiting{
+  public static class Visiting
+  {
     public static TResult AcceptAndReturnResultFrom<T, TResult>(this IVisitable<T> visitable, IValueReturningVisitor<T, TResult> visitor)
     {
       visitable.Accept(visitor);

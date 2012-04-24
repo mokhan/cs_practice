@@ -1,6 +1,9 @@
 namespace domain
 {
+  using System.Linq;
   using System.Collections.Generic;
+  using domain;
+  using utility;
 
   public class Capacity
   {
@@ -23,12 +26,15 @@ namespace domain
 
     public IQuantity AvailableFor(Month month)
     {
-      return new Quantity(0, new BOED());
-      //return this
-        //.increases
-        //.Where(x => x.IsBeforeOrOn(month))
-        //.Sum(x => x.IncreasedCapacity());
-      return null;
+      IQuantity result = new Quantity(0, new MCF());
+      this
+        .increases
+        .Where(x => x.IsBeforeOrOn(month))
+        .Each(x =>
+        {
+          result = result.Plus(x.IncreasedCapacity());
+        });
+      return result;
     }
 
     class Increase

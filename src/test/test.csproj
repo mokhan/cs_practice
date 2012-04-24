@@ -56,7 +56,8 @@
     <Compile Include="ProductionScheduleSpecs.cs" />
     <Compile Include="QuantitySpecs.cs" />
     <Compile Include="RangeSpecs.cs" />
-    <!--<Compile Include="GasPlantSpecs.cs" />-->
+    <Compile Include="GasPlantSpecs.cs" />
+    <Compile Include="CapacitySpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
