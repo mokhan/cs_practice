@@ -5,6 +5,13 @@ namespace domain
   using System.Linq;
   using utility;
 
+  public interface IWell
+  {
+    IQuantity GrossProductionFor<Commodity>(Month month) where Commodity : ICommodity, new();
+    IQuantity NetProductionFor<Commodity>(Month month) where Commodity : ICommodity, new();
+    void FlowInto(IFacility facility);
+  }
+
   public class Well : IWell
   {
     Month initialProductionMonth;
@@ -39,13 +46,11 @@ namespace domain
 
     void ensure_that_this_well_does_not_overflow_the_plant(IFacility facility)
     {
-      var period = initialProductionMonth.UpTo(new Month(2099, 12));
+      var period = initialProductionMonth.UpTo(Month.Infinity);
       this.curve.Accept( production =>
       {
-        if( production.OccursDuring(period)){
-          if(production.IsGreaterThanAvailableAt(facility))
+          if( production.OccursDuring(period) && production.IsGreaterThanAvailableAt(facility))
             throw new Exception();
-        }
       });
     }
 
@@ -53,12 +58,5 @@ namespace domain
     {
       if(null != this.facility) throw new Exception();
     }
-  }
-
-  public interface IWell
-  {
-    IQuantity GrossProductionFor<Commodity>(Month month) where Commodity : ICommodity, new();
-    IQuantity NetProductionFor<Commodity>(Month month) where Commodity : ICommodity, new();
-    void FlowInto(IFacility facility);
   }
 }

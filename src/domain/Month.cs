@@ -5,6 +5,7 @@ namespace domain
   public class Month : IComparable<Month>, IIncrementable<Month>
   {
     DateTime date;
+    public static readonly Month Infinity = new Month(2099, 12);
 
     public Month(int year, int month)
     {
