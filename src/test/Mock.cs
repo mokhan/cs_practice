@@ -9,7 +9,7 @@ namespace test
       return MockRepository.GenerateMock<T>();
     }
   }
-  public static class Assertsions
+  public static class Assertions
   {
     public static void received<T>(this T mock,System.Action<T> action)
     {

@@ -25,7 +25,7 @@ namespace domain
 
     public virtual bool IsGreaterThanAvailableAt(IFacility facility)
     {
-      return facility.AvailableCapacityFor(this.month).IsGreaterThan(produced);
+      return produced.IsGreaterThan(facility.AvailableCapacityFor(this.month));
     }
 
     public IQuantity ProductionOf<T>() where T : ICommodity, new()

@@ -43,9 +43,8 @@ namespace domain
       this.curve.Accept( production =>
       {
         if( production.OccursDuring(period)){
-          if(production.IsGreaterThanAvailableAt(facility)){
+          if(production.IsGreaterThanAvailableAt(facility))
             throw new Exception();
-          }
         }
       });
     }
