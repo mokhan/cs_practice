@@ -3,8 +3,9 @@ namespace domain
   using System;
   using System.Linq;
   using System.Collections.Generic;
+  using utility;
 
-  public class TypeCurve
+  public class TypeCurve : IVisitable<Production>
   {
     IEnumerable<Production> production;
 
@@ -22,6 +23,15 @@ namespace domain
 
     public virtual void Accept(Action<Production> visitor)
     {
+      this.production.Each(x => 
+      {
+        visitor(x);
+      });
+    }
+
+    public virtual void Accept(IVisitor<Production> visitor)
+    {
+      Accept(visitor.Visit);
     }
   }
 }

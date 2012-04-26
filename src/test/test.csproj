@@ -58,6 +58,7 @@
     <Compile Include="ProductionScheduleSpecs.cs" />
     <Compile Include="QuantitySpecs.cs" />
     <Compile Include="RangeSpecs.cs" />
+    <Compile Include="TypeCurveSpecs.cs" />
     <Compile Include="WellSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
