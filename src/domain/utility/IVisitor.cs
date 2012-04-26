@@ -28,6 +28,26 @@ namespace utility
 
     public static IEnumerable<T> Collect<T>( this IVisitable<T> visitable, Func<T, bool> predicate)
     {
+      return new Collectable<T>(predicate).CollectFrom(visitable);
+    }
+  }
+
+  public interface ICollectable<T>
+  {
+    IEnumerable<T> CollectFrom(IVisitable<T> visitable);
+  }
+
+  public class Collectable<T> : ICollectable<T>
+  {
+    Func<T, bool> predicate;
+
+    public Collectable(Func<T, bool> predicate) 
+    {
+      this.predicate = predicate;
+    }
+
+    public IEnumerable<T> CollectFrom(IVisitable<T> visitable)
+    {
       var results = new List<T>();
       visitable.Accept(new AnonymousVisitor<T>(item =>
       {
