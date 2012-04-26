@@ -34,27 +34,25 @@ namespace domain
 
     public IEnumerable<Month> MonthsOverAvailableCapacity()
     {
-      return MonthsOverAvailableCapacity(Month.Now().UpTo(new Month(2099, 12)));
+      return MonthsOverAvailableCapacity(Month.Now().UpTo(Month.Infinity));
     }
 
-    public virtual IQuantity AvailableCapacityFor(Month month){
-      throw new System.NotImplementedException();
+    public virtual IQuantity AvailableCapacityFor(Month month)
+    {
+      return capacity.AvailableFor(month);
     }
 
     public IEnumerable<Month> MonthsOverAvailableCapacity(IRange<Month> months)
     {
-      var results = new List<Month>();
-      months.Accept(month =>
+      return months.Collect( month =>
       {
-        if(IsOverCapacity(month))
-          results.Add(month);
+        return IsOverCapacity(month);
       });
-      return results;
     }
 
     bool IsOverCapacity(Month month)
     {
-      return capacity.AvailableFor(month).IsGreaterThan(TotalProductionFor(month));
+      return AvailableCapacityFor(month).IsGreaterThan(TotalProductionFor(month));
     }
 
     IQuantity TotalProductionFor(Month month)

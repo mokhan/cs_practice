@@ -2,7 +2,7 @@ namespace domain
 {
   using utility;
 
-  public class EstimatedNetProductionFor<T> : IValueReturningVisitor<IWell, IQuantity> where T : ICommodity, new()
+  public class EstimatedNetProductionFor<Commodity> : IValueReturningVisitor<IWell, IQuantity> where Commodity : ICommodity, new()
   {
     Month month;
     IQuantity result;
@@ -15,7 +15,7 @@ namespace domain
 
     public void Visit(IWell well)
     {
-      result = result.Plus(well.NetProductionFor<T>(month));
+      result = result.Plus(well.NetProductionFor<Commodity>(month));
     }
 
     public IQuantity Result()

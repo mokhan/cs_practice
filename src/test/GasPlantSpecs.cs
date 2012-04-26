@@ -44,5 +44,20 @@ namespace test
       static IWell firstWell;
       static IWell secondWell;
     }
+    public class when_retrieving_the_available_capacity_for_a_month
+    {
+      It should_return_the_correct_amount = () =>
+      {
+        result.ShouldEqual(30m.MCF());
+      };
+
+      Because of = () =>
+      {
+        sut.IncreaseCapacityTo(30m.MCF(),Month.Now());
+        result = sut.AvailableCapacityFor(Month.Now());
+      };
+
+      static IQuantity result;
+    }
   }
 }

@@ -1,6 +1,7 @@
 namespace domain
 {
   using System;
+  using utility;
 
   public static class Ranges
   {
@@ -10,7 +11,7 @@ namespace domain
     }
   }
 
-  public interface IRange<T> where T : IComparable<T>
+  public interface IRange<T> : IVisitable<T> where T : IComparable<T>
   {
     void Accept(Action<T> action);
     bool Contains(T item);
@@ -25,6 +26,11 @@ namespace domain
     {
       this.start = start;
       this.end = end;
+    }
+
+    public void Accept(IVisitor<T> visitor) 
+    {
+      Accept(visitor.Visit);
     }
 
     public void Accept(Action<T> visitor)
