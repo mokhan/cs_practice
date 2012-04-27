@@ -9,7 +9,8 @@ task :spec => :xbuild do
   sh "mono --debug packages/Machine.Specifications.0.5.3.0/tools/mspec-clr4.exe src/test/bin/Debug/test.dll"
 end
 
-task :mono, :package do |t, args|
-  sh "mono --runtime=v4.0.30319 tools/NuGet.exe install #{args[:package]}"
+task :mono_install, :package do |t, args|
+  sh "mono --runtime=v4.0.30319 tools/NuGet.exe install #{args[:package]} -OutputDirectory packages"
+  #sh "mono --runtime=v4.0.30319 tools/NuGet.exe help install"
 end
 
