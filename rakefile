@@ -1,5 +1,7 @@
 require 'albacore'
 
+task :default => :spec
+
 task :xbuild do 
   sh "xbuild src/test/test.csproj '/target:Clean;Rebuild' /verbosity:quiet /tv:4.0 /nologo"
 end
